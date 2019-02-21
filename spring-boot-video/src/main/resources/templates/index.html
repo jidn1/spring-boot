@@ -1,0 +1,54 @@
+<!DOCTYPE html >
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${videoLanguage.website}"></title>
+  <link rel="icon" th:href="${videoLanguage.webicon}">
+  <link rel="stylesheet" th:href="@{/css/reset.css}">
+  <link rel="stylesheet" th:href="@{/css/index.css}">
+</head>
+<body>
+  <div th:include="common/header::header"></div>
+
+  <div class="main" id="newSong">
+    <div class="main-inner">
+      <div class="main-title">
+        <h2 class="title"><i></i></h2>
+        <span class="line line-left"></span>
+        <span class="line line-right"></span>
+      </div>
+      <div class="main-slider tab-cont">
+        <ul class="slider-wrapper" >
+
+          <li th:each="m : ${mLists}">
+            <a th:href="${video.player(m.id)}" class="img">
+              <img th:src="${m.movicePictureUrl}" alt="#">
+              <span class="mask"></span>
+              <i class="icon-play"></i>
+            </a>
+            <div class="info">
+              <div class="title">
+                <a th:href="${video.player(m.id)}" th:text="${m.moviceName}"></a>
+                <i class="icon-sprite"></i>
+              </div>
+              <a th:href="${video.player(m.id)}" class="author" th:text="${m.director}"></a>
+            </div>
+          </li>
+        </ul>
+        <div class="slider-btns">
+          <span class="cur"><i></i></span>
+          <span><i></i></span>
+          <span><i></i></span>
+        </div>
+      </div>
+    </div>
+    <div class="main-operate">
+      <a href="javascript:;" class="slider-prev"><i class="icon-sprite"></i></a>
+      <a href="javascript:;" class="slider-next"><i class="icon-sprite"></i></a>
+    </div>
+  </div>
+  <div th:include="common/footer::footer"></div>
+  <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+  <script th:src="@{/js/script.js}"></script>
+</body>
+</html>

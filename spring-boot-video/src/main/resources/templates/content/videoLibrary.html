@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" th:href="${videoLanguage.webicon}">
+    <title th:text="${videoLanguage.movieLibrary}"></title>
+
+</head>
+<body>
+<div th:include="common/header::header"></div>
+
+<div class="main" id="mv">
+    <div class="main-inner">
+        <div class="main-title">
+            <h2 class="title"><i></i></h2>
+            <span class="line line-left"></span>
+            <span class="line line-right"></span>
+        </div>
+        <ul class="mv-list tab-cont">
+            <li class="item" th:each="m : ${movieList.list}">
+                <a th:href="${video.player(m.id)}" class="img"><img th:src="${m.movicePictureUrl}"  alt="#"><i class="icon-play"></i></a>
+                <div class="info">
+                    <a th:href="${video.player(m.id)}" class="title" th:text="${m.moviceName}"></a>
+                    <a th:href="${video.player(m.id)}" class="author" th:text="${m.director}"></a>
+                    <span class="play-total" th:text="${m.duration}"><i class="icon-sprite"></i></span>分钟
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="lists-navigator clearfix">
+    <div th:replace="common/page::pageNav(${movieList},'←','→')"></div>
+</div>
+<div th:include="common/footer::footer"></div>
+</body>
+</html>

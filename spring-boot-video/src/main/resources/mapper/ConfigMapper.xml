@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springbootvideo.dao.ConfigDao">
+
+    <sql id="BASE_TABLE">
+      fh_config
+    </sql>
+    <sql id="BASE_COLUMN">
+        c.id,c.configkey,c.configname,c.configdescription,c.datatype,c.value,c.typekey,c.typename,c.description
+    </sql>
+
+    <select id="findByCondition" resultType="com.springbootvideo.model.Config"
+            parameterType="com.springbootvideo.model.Config">
+        SELECT
+        <include refid="BASE_COLUMN"/>
+        FROM
+        <include refid="BASE_TABLE"/> AS c
+        <where>
+            <if test="configkey != null">
+                AND c.configkey = #{configkey, jdbcType=VARCHAR}
+            </if>
+            <if test="configname != null">
+                AND c.configname = #{configname, jdbcType=VARCHAR}
+            </if>
+            <if test="value != null">
+                AND c.value = #{value, jdbcType=VARCHAR}
+            </if>
+        </where>
+        ORDER BY c.created DESC
+    </select>
+
+</mapper>
