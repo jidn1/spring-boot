@@ -1,12 +1,11 @@
 package com.springbootvideo.common.interceptor;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.springbootvideo.common.service.RedisService;
 import com.springbootvideo.common.util.IpUtil;
 import com.springbootvideo.common.util.SpringUtil;
 import com.springbootvideo.common.util.VideoCache;
 import com.springbootvideo.common.util.VideoDirective;
+import com.springbootvideo.common.constant.VideoConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,16 +52,7 @@ public class BaseInterceptor implements HandlerInterceptor {
         if(VideoCache.cache_language.isEmpty()){
             Map<String, String> language = new HashMap<String, String>();
             RedisService redisService =  SpringUtil.getBean("redisService");
-            String test = redisService.get("test");
-            language.put("home","首页");
-            language.put("movieLibrary","电影库");
-            language.put("copyright","Copyright © 2019 Film House. All Rights Reserved.");
-            language.put("kxtv","Film House 版权所有");
-            language.put("website","Film House");
-            language.put("webicon","images/1.png");
-            language.put("library","电影库");
-            language.put("playering","正在播放");
-            language.put("homesearch","暂时不支持使用");
+            String configStr = redisService.get(VideoConstant.VIDEO_CONFIG);
             VideoCache.cache_language = language;
         }
         request.setAttribute("videoLanguage", VideoCache.cache_language);

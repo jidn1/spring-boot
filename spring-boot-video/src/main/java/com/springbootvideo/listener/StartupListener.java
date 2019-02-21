@@ -1,5 +1,8 @@
 package com.springbootvideo.listener;
 
+import com.springbootvideo.common.util.SpringUtil;
+import com.springbootvideo.service.IConfigService;
+import com.springbootvideo.service.IMovieService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.servlet.ServletContextEvent;
@@ -17,6 +20,13 @@ import javax.servlet.annotation.WebListener;
 public class StartupListener implements ServletContextListener {
     private static final Logger logger = LoggerFactory.getLogger(StartupListener.class);
     public void contextInitialized(ServletContextEvent event) {
+
+        //初始化缓存fh_config
+        IConfigService configService = (IConfigService)SpringUtil.getBean("configService");
+        configService.initCache();
+
+        IMovieService movieService = (IMovieService)SpringUtil.getBean("movieService");
+        movieService.initTopHome();
 
         logger.info("=======================【StartupListener 已加载完毕】==================================");
     }

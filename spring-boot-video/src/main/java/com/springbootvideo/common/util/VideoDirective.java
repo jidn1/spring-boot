@@ -1,5 +1,7 @@
 package com.springbootvideo.common.util;
 
+import com.alibaba.dubbo.common.utils.StringUtils;
+import com.springbootvideo.common.constant.VideoConstant;
 import org.springframework.stereotype.Component;
 
 /**
@@ -19,7 +21,14 @@ public class VideoDirective {
         return site_url(url);
     }
 
-    public static String site_url(String sub) {
-        return "/springboot_video/" + sub+".html";
+    public static String page(String url){
+        return site_url("library/page/"+url);
     }
+
+    public static String site_url(String sub) {
+
+        return VideoConstant.BASE_SITE + sub+".html";
+    }
+
+
 }
