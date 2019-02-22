@@ -33,7 +33,7 @@ public class MovieServiceImpl implements IMovieService {
     private RedisService redisService;
 
     @Override
-    @CacheEvict(value="movieCaches",key = "'findPageBySql_' + #p1 + 'type_' + #p0.type")
+    @CacheEvict(value="movieCaches",key = "'findPageBySql'")
     public PageInfo<Movie> findPageBySql(MovieCon m, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<Movie> pageBySql = movieDao.findPageBySql(m);

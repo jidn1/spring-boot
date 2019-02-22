@@ -779,7 +779,7 @@
   background-color: #e6e6e6;
 }
 #mv .main-title .title i {
-  width: 170px;
+  width: 209px;
   background-position: 0 -180px;
 }
 #mv .main-title .line {
@@ -1052,4 +1052,9 @@ li {
 
 .lists-navigator ol li.current a {
   color: #6fa3ef;
+}
+
+.img_index{
+  height: 297px;
+  width: 298px;
 }

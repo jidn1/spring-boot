@@ -51,7 +51,7 @@ public class BaseInterceptor implements HandlerInterceptor {
     private void initSiteConfig(HttpServletRequest request) {
         if(VideoCache.cache_language.isEmpty()){
             Map<String, String> language = new HashMap<String, String>();
-            RedisService redisService =  SpringUtil.getBean("redisService");
+            RedisService redisService = (RedisService) SpringUtil.getBean("redisService");
             String configStr = redisService.get(VideoConstant.VIDEO_CONFIG);
             VideoCache.cache_language = language;
         }

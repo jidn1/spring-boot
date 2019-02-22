@@ -11,7 +11,7 @@
     </sql>
 
     <select id="findPageBySql" resultType="com.springbootvideo.model.Movie"
-            parameterType="com.springbootvideo.model.MovieCon">
+            parameterType="com.springbootvideo.model.Movie">
         SELECT
         <include refid="BASE_COLUMN"/>
         FROM

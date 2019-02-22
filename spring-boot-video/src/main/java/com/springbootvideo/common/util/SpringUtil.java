@@ -1,5 +1,6 @@
 package com.springbootvideo.common.util;
 
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -14,36 +15,53 @@ import org.springframework.stereotype.Component;
 @Component
 public class SpringUtil implements ApplicationContextAware {
 
-    // Spring应用上下文环境
+    /**
+     * 上下文对象实例
+     */
     private static ApplicationContext applicationContext;
 
-    /**
-     * 实现ApplicationContextAware接口的回调方法，设置上下文环境
-     * @param applicationContext
-     */
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) {
-        SpringUtil.applicationContext = applicationContext;
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        if (SpringUtil.applicationContext == null) {
+            SpringUtil.applicationContext = applicationContext;
+        }
     }
 
     /**
-     * @return ApplicationContext
+     * 获取applicationContext
+     * @return
      */
     public static ApplicationContext getApplicationContext() {
         return applicationContext;
     }
 
     /**
-     * 获取注入对象
+     * 通过name获取 Bean.
      * @param name
+     * @return
+     */
+    public static Object getBean(String name){
+        return getApplicationContext().getBean(name);
+    }
+
+    /**
+     * 通过class获取Bean.
+     * @param clazz
      * @param <T>
      * @return
      */
-    public static <T> T getBean(String name) {
-        try {
-            return (T) applicationContext.getBean(name);
-        } catch (NoSuchBeanDefinitionException e) {
-        }
-        return null;
+    public static <T> T getBean(Class<T> clazz){
+        return getApplicationContext().getBean(clazz);
+    }
+
+    /**
+     * 通过name,以及Clazz返回指定的Bean
+     * @param name
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    public static <T> T getBean(String name,Class<T> clazz){
+        return getApplicationContext().getBean(name, clazz);
     }
 }

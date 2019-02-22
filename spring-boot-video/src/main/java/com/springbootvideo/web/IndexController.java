@@ -1,5 +1,6 @@
 package com.springbootvideo.web;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.springbootvideo.common.service.RedisService;
 import com.springbootvideo.common.constant.VideoConstant;
@@ -39,40 +40,45 @@ public class IndexController {
     public String index(HttpServletRequest request) {
         List<Movie> mLists = new ArrayList<Movie>();
         try {
-            Movie m1 = new Movie();
-            m1.setId(1);
-            m1.setMoviceName("那个静默的阳光午后");
-            m1.setDirector("范玮琪");
-            m1.setMovicePictureUrl("images/cont/slider_img1.jpg");
-            m1.setMovicePlayerUrl("http://vjs.zencdn.net/v/oceans.mp4");
 
-            Movie m2 = new Movie();
-            m2.setId(2);
-            m2.setMoviceName("流浪地球");
-            m2.setDirector("吴京");
-            m2.setMovicePictureUrl("images/cont/slider_img2.jpg");
-            m2.setMovicePlayerUrl("http://www.html5videoplayer.net/videos/madagascar3.mp4");
+            String topMovie = redisService.get(VideoConstant.TOP_HOME);
 
-            Movie m3 = new Movie();
-            m3.setId(3);
-            m3.setMoviceName("疯狂的外星人");
-            m3.setDirector("黄渤");
-            m3.setMovicePictureUrl("images/cont/slider_img3.jpg");
-            m3.setMovicePlayerUrl("http://vjs.zencdn.net/v/oceans.mp4");
+            List<Movie> movieList = JSONObject.parseArray(topMovie, Movie.class);
 
-            Movie m4 = new Movie();
-            m4.setId(4);
-            m4.setMoviceName("新喜剧之王");
-            m4.setDirector("周星驰");
-            m4.setMovicePictureUrl("images/cont/slider_img4.jpg");
-            m4.setMovicePlayerUrl("http://www.html5videoplayer.net/videos/madagascar3.mp4");
+//            Movie m1 = new Movie();
+//            m1.setId(1);
+//            m1.setMoviceName("那个静默的阳光午后");
+//            m1.setDirector("范玮琪");
+//            m1.setMovicePictureUrl("images/cont/slider_img1.jpg");
+//            m1.setMovicePlayerUrl("http://vjs.zencdn.net/v/oceans.mp4");
+//
+//            Movie m2 = new Movie();
+//            m2.setId(2);
+//            m2.setMoviceName("流浪地球");
+//            m2.setDirector("吴京");
+//            m2.setMovicePictureUrl("images/cont/slider_img2.jpg");
+//            m2.setMovicePlayerUrl("http://www.html5videoplayer.net/videos/madagascar3.mp4");
+//
+//            Movie m3 = new Movie();
+//            m3.setId(3);
+//            m3.setMoviceName("疯狂的外星人");
+//            m3.setDirector("黄渤");
+//            m3.setMovicePictureUrl("images/cont/slider_img3.jpg");
+//            m3.setMovicePlayerUrl("http://vjs.zencdn.net/v/oceans.mp4");
+//
+//            Movie m4 = new Movie();
+//            m4.setId(4);
+//            m4.setMoviceName("新喜剧之王");
+//            m4.setDirector("周星驰");
+//            m4.setMovicePictureUrl("images/cont/slider_img4.jpg");
+//            m4.setMovicePlayerUrl("http://www.html5videoplayer.net/videos/madagascar3.mp4");
+//
+//            mLists.add(m1);
+//            mLists.add(m2);
+//            mLists.add(m3);
+//            mLists.add(m4);
 
-            mLists.add(m1);
-            mLists.add(m2);
-            mLists.add(m3);
-            mLists.add(m4);
-
-            request.setAttribute("mLists",mLists);
+            request.setAttribute("mLists",movieList);
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -104,90 +110,6 @@ public class IndexController {
         return  "content/player";
     }
 
-//    @GetMapping("/library.html")
-//    public String library(HttpServletRequest request) {
-//        List<Movie> mLists = new ArrayList<Movie>();
-//        try {
-//            Movie m1 = new Movie();
-//            m1.setId(1);
-//            m1.setDuration(126);
-//            m1.setMoviceName("Let Me Love You");
-//            m1.setDirector("刘惜君");
-//            m1.setMovicePictureUrl("images/cont/mv_img1.jpg");
-//            m1.setMovicePlayerUrl("http://vjs.zencdn.net/v/oceans.mp4");
-//
-//            Movie m2 = new Movie();
-//            m2.setId(2);
-//            m2.setDuration(126);
-//            m2.setMoviceName("Let Me Love You");
-//            m2.setDirector("刘惜君");
-//            m2.setMovicePictureUrl("images/cont/mv_img2.jpg");
-//            m2.setMovicePlayerUrl("http://vjs.zencdn.net/v/oceans.mp4");
-//
-//            Movie m3 = new Movie();
-//            m3.setId(3);
-//            m3.setDuration(126);
-//            m3.setMoviceName("Let Me Love You");
-//            m3.setDirector("刘惜君");
-//            m3.setMovicePictureUrl("images/cont/mv_img3.jpg");
-//            m3.setMovicePlayerUrl("http://vjs.zencdn.net/v/oceans.mp4");
-//
-//            Movie m4 = new Movie();
-//            m4.setId(4);
-//            m4.setDuration(126);
-//            m4.setMoviceName("Let Me Love You");
-//            m4.setDirector("刘惜君");
-//            m4.setMovicePictureUrl("images/cont/mv_img4.jpg");
-//            m4.setMovicePlayerUrl("http://vjs.zencdn.net/v/oceans.mp4");
-//
-//            Movie m5 = new Movie();
-//            m5.setId(5);
-//            m5.setDuration(126);
-//            m5.setMoviceName("Let Me Love You");
-//            m5.setDirector("刘惜君");
-//            m5.setMovicePictureUrl("images/cont/mv_img5.jpg");
-//            m5.setMovicePlayerUrl("http://vjs.zencdn.net/v/oceans.mp4");
-//
-//            Movie m6 = new Movie();
-//            m6.setId(6);
-//            m6.setDuration(126);
-//            m6.setMoviceName("Let Me Love You");
-//            m6.setDirector("刘惜君");
-//            m6.setMovicePictureUrl("images/cont/mv_img6.jpg");
-//            m6.setMovicePlayerUrl("http://vjs.zencdn.net/v/oceans.mp4");
-//
-//            Movie m7 = new Movie();
-//            m7.setId(7);
-//            m7.setDuration(126);
-//            m7.setMoviceName("Let Me Love You");
-//            m7.setDirector("刘惜君");
-//            m7.setMovicePictureUrl("images/cont/mv_img7.jpg");
-//            m7.setMovicePlayerUrl("http://vjs.zencdn.net/v/oceans.mp4");
-//
-//            Movie m8 = new Movie();
-//            m8.setId(8);
-//            m8.setDuration(126);
-//            m8.setMoviceName("Let Me Love You");
-//            m8.setDirector("刘惜君");
-//            m8.setMovicePictureUrl("images/cont/mv_img8.jpg");
-//            m8.setMovicePlayerUrl("http://vjs.zencdn.net/v/oceans.mp4");
-//
-//            mLists.add(m1);
-//            mLists.add(m2);
-//            mLists.add(m3);
-////            mLists.add(m4);
-////            mLists.add(m5);
-////            mLists.add(m6);
-////            mLists.add(m7);
-////            mLists.add(m8);
-//
-//            request.setAttribute("mLists",mLists);
-//        } catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        return "content/videoLibrary";
-//    }
-
     @ApiOperation("电影库")
     @GetMapping("/library.html")
     public String library(HttpServletRequest request,@ApiParam(name = "limit", value = "页数", required = false)
@@ -201,27 +123,17 @@ public class IndexController {
                             @RequestParam(value = "limit", required = false, defaultValue = "8")int limit){
         p = p < 0 || p > VideoConstant.MAX_PAGE ? 1 : p;
         MovieCon movieCon = new MovieCon();
+        movieCon.setLanguage("中文");
         PageInfo<Movie> movieList = movieService.findPageBySql(movieCon, p, limit);
         request.setAttribute("movieList", movieList);//文章列表
 
         return "content/videoLibrary";
     }
 
-    /**
-     * 页面跳转
-     * @param module
-     * @param url
-     * @return
-     */
-    @GetMapping("{url}.htm")
-    public String page(@PathVariable("url") String url) {
-        return  url;
-    }
 
-
-    @GetMapping("{module}/{url}.htm")
-    public String page(@PathVariable("module") String module,@PathVariable("url") String url) {
-        return module + "/" + url;
-    }
+//    @GetMapping("{module}/{url}.htm")
+//    public String page(@PathVariable("module") String module,@PathVariable("url") String url) {
+//        return module + "/" + url;
+//    }
 
 }
