@@ -5,6 +5,7 @@ import com.springbootvideo.model.Movie;
 import com.springbootvideo.model.MovieCon;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Copyright © 北京互融时代软件有限公司
@@ -28,4 +29,17 @@ public interface IMovieService {
      * @return
      */
     void initTopHome();
+
+    /**
+     *
+     * @param mid
+     * @return
+     */
+    Movie findById(Integer mid);
+
+    /**
+     * 初始化电影
+     */
+    void initMovieAll(Map<String,String> map);
+
 }

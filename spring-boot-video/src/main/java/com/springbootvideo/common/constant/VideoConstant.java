@@ -21,4 +21,6 @@ public class VideoConstant {
     public static final String BASE_SITE = "/springboot_video/";
 
     public static final String TOP_HOME = "top_home";
+
+    public static final String MOVIE_LIBRARY = "movie_library_playerUrl";
 }

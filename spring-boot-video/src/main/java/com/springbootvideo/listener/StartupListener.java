@@ -34,6 +34,7 @@ public class StartupListener implements ServletContextListener {
 
         IMovieService movieService = (IMovieService)app.getBean("movieService");
         movieService.initTopHome();
+        movieService.initMovieAll(null);
 
         logger.info("=======================【StartupListener 已加载完毕】==================================");
     }

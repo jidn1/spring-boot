@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Copyright © 北京互融时代软件有限公司
@@ -47,5 +48,19 @@ public class MovieServiceImpl implements IMovieService {
         String homeStr = JSON.toJSONString(topHome);
         redisService.save(VideoConstant.TOP_HOME,homeStr);
 
+    }
+
+    @Override
+    public Movie findById(Integer mid) {
+        return null;
+    }
+
+    @Override
+    public void initMovieAll(Map<String,String> map) {
+        List<Movie> movieByCon = movieDao.findMovieByCon(map);
+        String homeStr = JSON.toJSONString(movieByCon);
+        movieByCon.forEach(m -> {
+            redisService.hset(VideoConstant.MOVIE_LIBRARY,m.getId().toString(),m.getMovicePlayerUrl());
+        });
     }
 }

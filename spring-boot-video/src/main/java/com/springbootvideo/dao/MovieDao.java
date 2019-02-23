@@ -5,6 +5,7 @@ import com.springbootvideo.model.MovieCon;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Copyright © 北京互融时代软件有限公司
@@ -27,4 +28,7 @@ public interface MovieDao {
      * @return
      */
     List<Movie> findTopHome();
+
+
+    List<Movie> findMovieByCon(Map<String,String> map);
 }
