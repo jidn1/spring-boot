@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import javax.annotation.Resource;
 
 /**
- * @Copyright © 北京互融时代软件有限公司
+ * @Copyright © 正经吉
  * @Author: Jidn
  * @Date: 2019/2/26 16:51
  * @Description:

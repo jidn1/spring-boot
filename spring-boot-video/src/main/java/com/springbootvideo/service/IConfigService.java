@@ -5,7 +5,7 @@ import com.springbootvideo.model.Config;
 import java.util.List;
 
 /**
- * @Copyright © 北京互融时代软件有限公司
+ * @Copyright © 正经吉
  * @Author: Jidn
  * @Date: 2019/2/21 13:11
  * @Description:

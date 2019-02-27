@@ -3,6 +3,7 @@ package com.springbootvideo.listener;
 import com.springbootvideo.common.util.SpringUtil;
 import com.springbootvideo.service.IConfigService;
 import com.springbootvideo.service.IMovieService;
+import com.springbootvideo.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -32,9 +33,14 @@ public class StartupListener implements ServletContextListener {
         IConfigService configService = (IConfigService)app.getBean("configService");
         configService.initCache();
 
+        //电影数据初始化
         IMovieService movieService = (IMovieService)app.getBean("movieService");
         movieService.initTopHome();
         movieService.initMovieAll(null);
+
+        //初始化VIP信息
+        IUserService userService = (IUserService)app.getBean("userService");
+        userService.initVip();
 
         logger.info("=======================【StartupListener 已加载完毕】==================================");
     }

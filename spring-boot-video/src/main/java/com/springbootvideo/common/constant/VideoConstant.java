@@ -1,7 +1,7 @@
 package com.springbootvideo.common.constant;
 
 /**
- * @Copyright © 北京互融时代软件有限公司
+ * @Copyright © 正经吉
  * @Author: Jidn
  * @Date: 2019/2/21 10:53
  * @Description: 常量
@@ -25,6 +25,16 @@ public class VideoConstant {
     public static final String TOP_HOME = "top_home";
 
     public static final String MOVIE_LIBRARY = "movie_library_playerUrl";
+
+    public static final String VIP_USER = "vip_user";
+
+    public static final String ICON_VIP_Y = "icon-vip_y";
+
+    public static final String ICON_VIP_N = "icon-vip_n";
+
+    public static final String ICON_VIP_N_TITLE = "您还不是VIP会员";
+
+    public static final String ICON_VIP_Y_TITLE = "您已经是尊贵的VIP会员了";
 
 
     //====================================

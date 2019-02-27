@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.springbootvideo.common.model.JsonResult;
 import com.springbootvideo.common.service.RedisService;
 import com.springbootvideo.common.constant.VideoConstant;
+import com.springbootvideo.common.util.ErrorPageConfig;
 import com.springbootvideo.common.util.IpUtil;
 import com.springbootvideo.model.Movie;
 import com.springbootvideo.model.MovieCon;
@@ -15,6 +16,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -36,6 +38,8 @@ public class IndexController {
 
     @Resource
     private RedisService redisService;
+    @Resource
+    private ErrorPageConfig errorPageConfig;
 
     @Resource
     private IMovieService movieService;
@@ -51,6 +55,7 @@ public class IndexController {
             request.setAttribute("mLists",movieList);
         } catch (Exception e){
             e.printStackTrace();
+            errorPageConfig.containerCustomizer();
         }
         return "index";
     }
@@ -87,6 +92,13 @@ public class IndexController {
         PageInfo<Movie> movieList = movieService.findPageBySql(movieCon, p, limit);
         request.setAttribute("movieList", movieList);//文章列表
         return "content/videoLibrary";
+    }
+
+    @ApiOperation("VIP尊享")
+    @GetMapping("/vip.html")
+    public String vip(HttpServletRequest request,@ApiParam(name = "limit", value = "页数", required = false)
+    @RequestParam(name = "limit", required = false, defaultValue = "8")int limit){
+        return "content/vipLibrary";
     }
 
     @RequestMapping("/getPlayer")

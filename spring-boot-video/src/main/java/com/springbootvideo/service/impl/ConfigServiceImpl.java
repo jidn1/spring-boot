@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Copyright © 北京互融时代软件有限公司
+ * @Copyright © 正经吉
  * @Author: Jidn
  * @Date: 2019/2/21 13:12
  * @Description:
@@ -46,7 +46,6 @@ public class ConfigServiceImpl implements IConfigService {
                     configMap.put(app.getConfigkey(), app.getValue());
                 }
             }
-
             String configStr = JSON.toJSONString(configMap);
             redisService.save(VideoConstant.VIDEO_CONFIG,configStr);
             logger.info("初始化系统配置信息缓存"+VideoConstant.VIDEO_CONFIG);

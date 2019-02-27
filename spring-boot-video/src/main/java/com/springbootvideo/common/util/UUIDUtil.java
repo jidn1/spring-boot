@@ -3,7 +3,7 @@ package com.springbootvideo.common.util;
 import java.util.UUID;
 
 /**
- * @Copyright © 北京互融时代软件有限公司
+ * @Copyright © 正经吉
  * @Author: Jidn
  * @Date: 2019/2/26 13:39
  * @Description: uuid生成器
