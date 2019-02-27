@@ -3,6 +3,7 @@ package com.springbootvideo.dao;
 import com.springbootvideo.model.Movie;
 import com.springbootvideo.model.MovieCon;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,7 @@ public interface MovieDao {
      * @param m
      * @return
      */
+
     List<Movie> findPageBySql(MovieCon m);
 
     /**

@@ -18,9 +18,26 @@ public class VideoConstant {
      */
     public static final String VIDEO_CONFIG = "video_config";
 
+    public static final String USER = "film_user";
+
     public static final String BASE_SITE = "/springboot_video/";
 
     public static final String TOP_HOME = "top_home";
 
     public static final String MOVIE_LIBRARY = "movie_library_playerUrl";
+
+
+    //====================================
+    public static final String USER_EXIST = "用户已注册，请直接登录";
+    public static final String REGIST_SUCCESS = "注册成功，请登录";
+
+    public static final String EMAIL_SEND_CONTENT = "您好，您已经注册成为Film House网站成员，请登录 film.zjjtv.top";
+
+    public static final String EMAIL_SUBJECT = "Film House";
+
+    public static final String PASSWORD_ERROR = "密码错误！";
+
+    public static final String USER_NOT_EXIST = "用户不存在！";
+
+    public static final String LOGIN_SUCCESS = "登录成功！";
 }

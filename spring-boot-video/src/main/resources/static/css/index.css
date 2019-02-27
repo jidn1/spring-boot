@@ -506,7 +506,7 @@
   border-radius: 3px;
 }
 .header-login a.login {
-  width: 60px;
+  width: 125px;
 }
 .header-login a.open-green {
   width: 115px;
@@ -624,7 +624,7 @@
   background-color: #151515;
 }
 /* ====== rank ====== */
-#rank { width: 100%; height: 830px; background-repeat: no-repeat; background-image: url(../images/cont/rank_bg.jpg); background-position: center 0%; }
+#rank { width: 100%; height: 554px; background-repeat: no-repeat; background-image: url(../images/cont/rank_bg.jpg); background-position: center 0%; }
 #rank .main-title .title i {
   background-position: 0 -120px;
 }

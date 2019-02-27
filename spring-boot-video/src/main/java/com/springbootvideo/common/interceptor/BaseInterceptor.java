@@ -1,11 +1,13 @@
 package com.springbootvideo.common.interceptor;
 
+import com.alibaba.fastjson.JSONObject;
 import com.springbootvideo.common.service.RedisService;
 import com.springbootvideo.common.util.IpUtil;
 import com.springbootvideo.common.util.SpringUtil;
 import com.springbootvideo.common.util.VideoCache;
 import com.springbootvideo.common.util.VideoDirective;
 import com.springbootvideo.common.constant.VideoConstant;
+import com.springbootvideo.model.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -53,7 +56,10 @@ public class BaseInterceptor implements HandlerInterceptor {
             Map<String, String> language = new HashMap<String, String>();
             RedisService redisService = (RedisService) SpringUtil.getBean("redisService");
             String configStr = redisService.get(VideoConstant.VIDEO_CONFIG);
-            VideoCache.cache_language = language;
+            List<Config> configs = JSONObject.parseArray(configStr, Config.class);
+            for (Config app : configs) {
+                VideoCache.cache_language.put(app.getConfigkey(),app.getValue());
+            }
         }
         request.setAttribute("videoLanguage", VideoCache.cache_language);
     }

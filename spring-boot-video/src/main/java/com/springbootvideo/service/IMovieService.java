@@ -1,8 +1,10 @@
 package com.springbootvideo.service;
 
 import com.github.pagehelper.PageInfo;
+import com.springbootvideo.common.model.Email;
 import com.springbootvideo.model.Movie;
 import com.springbootvideo.model.MovieCon;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Map;

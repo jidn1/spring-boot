@@ -2,6 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       th:fragment="header">
 <head>
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/lib/layer/css/layer.css}">
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script th:src="@{/lib/md5/md5.js}"></script>
+    <script th:src="@{/js/validate.js}"></script>
+    <script th:src="@{/js/script.js}"></script>
+    <script th:src="@{/lib/layer/layer.js}"></script>
+    <script th:src="@{/js/common.js}" ></script>
 </head>
 <header role="header" class="header">
     <div class="header-container">
@@ -9,12 +18,12 @@
             <a th:href="${video.menu_url('index')}"  class="logo"></a>
             <nav class="header-nav">
                 <ul>
-                    <li><a th:href="${video.menu_url('index')}" class="header-nav__cur" th:text="${videoLanguage.home}"></a></li>
+                    <li><a th:href="${video.menu_url('index')}"  th:text="${videoLanguage.home}"></a></li>
                     <li><a th:href="${video.menu_url('library')}" th:text="${videoLanguage.movieLibrary}"></a></li>
                 </ul>
             </nav>
             <div class="header-search">
-                <input type="text" class="text" th:placeholder="${videoLanguage.homesearchunuse}" disabled>
+                <input type="text" class="text" th:placeholder="${videoLanguage.homesearchunuse}" >
                 <div class="btn"><i class="icon-sprite"></i></div>
                 <div class="result">
                     <a href="#" class="result-item">
@@ -28,8 +37,12 @@
                     </div>
                 </div>
             </div>
-            <div class="header-login">
-                <!--<a href="#" class="login">Login</a>-->
+            <div class="header-login"  th:if="${session.film_user} != null">
+                <a th:href="${video.menu_url('login')}" class="login" th:text="${session.film_user.email}"></a>
+                <a th:href="${video.menu_url('loginOut')}" class="login" th:text="${videoLanguage.loginout}"></a>
+            </div>
+            <div class="header-login"  th:if="${session.film_user} == null" >
+                <a th:href="${video.menu_url('login')}" class="login" th:text="${videoLanguage.signin}"></a>
             </div>
         </div>
     </div>

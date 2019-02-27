@@ -4,12 +4,10 @@
   <meta charset="UTF-8">
   <title th:text="${videoLanguage.website}"></title>
   <link rel="icon" th:href="${videoLanguage.webicon}">
-  <link rel="stylesheet" th:href="@{/css/reset.css}">
-  <link rel="stylesheet" th:href="@{/css/index.css}">
+
 </head>
 <body>
   <div th:include="common/header::header"></div>
-
   <div class="main" id="newSong">
     <div class="main-inner">
       <div class="main-title">
@@ -48,7 +46,5 @@
     </div>
   </div>
   <div th:include="common/footer::footer"></div>
-  <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-  <script th:src="@{/js/script.js}"></script>
 </body>
 </html>

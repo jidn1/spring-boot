@@ -2,11 +2,15 @@ package com.springbootvideo.web;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
+import com.springbootvideo.common.model.JsonResult;
 import com.springbootvideo.common.service.RedisService;
 import com.springbootvideo.common.constant.VideoConstant;
+import com.springbootvideo.common.util.IpUtil;
 import com.springbootvideo.model.Movie;
 import com.springbootvideo.model.MovieCon;
+import com.springbootvideo.model.User;
 import com.springbootvideo.service.IMovieService;
+import com.springbootvideo.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -35,8 +39,10 @@ public class IndexController {
 
     @Resource
     private IMovieService movieService;
+    @Resource
+    private IUserService userService;
 
-    @GetMapping("index.html")
+    @GetMapping("index")
     public String index(HttpServletRequest request) {
         List<Movie> mLists = new ArrayList<Movie>();
         try {
@@ -47,6 +53,17 @@ public class IndexController {
             e.printStackTrace();
         }
         return "index";
+    }
+
+    @GetMapping("login.html")
+    public String loginPage(HttpServletRequest request) {
+        return "login";
+    }
+
+    @GetMapping("loginOut.html")
+    public String loginOut(HttpServletRequest request) {
+        request.getSession().removeAttribute(VideoConstant.USER);
+        return "redirect:/index";
     }
 
     @GetMapping("/player/{mid}.html")
@@ -72,7 +89,6 @@ public class IndexController {
         return "content/videoLibrary";
     }
 
-
     @RequestMapping("/getPlayer")
     @ResponseBody
     public Object getPlayerUrl(HttpServletRequest request){
@@ -84,9 +100,48 @@ public class IndexController {
         Object analysisurl = parseObject.get("analysisurl");
         String playerUrl = redisService.hget(VideoConstant.MOVIE_LIBRARY, id);
         String url = analysisurl+playerUrl;
-        System.out.println(url);
         map.put("URL",url);
         return map;
     }
+
+
+    @PostMapping("registService")
+    @ResponseBody
+    public JsonResult registService(HttpServletRequest request,
+                                    @ApiParam(name = "email", value = "邮箱", required = true) @RequestParam("email") String email,
+                                    @ApiParam(name = "password", value = "密码", required = true) @RequestParam("password") String password) {
+        JsonResult jsonResult = new JsonResult();
+        User user = new User();
+        try {
+            user.setEmail(email);
+            user.setPassword(password);
+            user.setIp(IpUtil.getIpAddrByRequest(request));
+            jsonResult = userService.registUser(user);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return jsonResult;
+    }
+
+    @PostMapping("loginService")
+    @ResponseBody
+    public JsonResult loginService(HttpServletRequest request,
+                                    @ApiParam(name = "email", value = "邮箱", required = true) @RequestParam("email") String email,
+                                    @ApiParam(name = "password", value = "密码", required = true) @RequestParam("password") String password) {
+        JsonResult jsonResult = new JsonResult();
+        try {
+            jsonResult = userService.loginService(email, password);
+            if(jsonResult.getSuccess()){
+                request.getSession().setAttribute(VideoConstant.USER,jsonResult.getObj());
+            }
+        } catch (Exception e){
+            jsonResult.setMsg(e.getMessage());
+            e.printStackTrace();
+        }
+        return jsonResult;
+    }
+
+
+
 
 }
