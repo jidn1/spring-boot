@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" th:href="${videoLanguage.webicon}">
+    <title th:text="${videoLanguage.vip}"></title>
+</head>
+<body>
+<div th:include="common/header::header"></div>
+<div  id="vip">
+    <img th:src="@{/images/bg_vip.jpg}" style="padding-left: 29%" height="471" width="552">
+
+</div>
+<div th:include="common/footer::footer"></div>
+</body>
+</html>

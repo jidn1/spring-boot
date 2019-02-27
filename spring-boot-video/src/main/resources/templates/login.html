@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${videoLanguage.loginTitle}"></title>
+    <link rel="stylesheet" th:href="@{/css/login/styles.css}">
+    <script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
+</head>
+<body>
+<div th:include="common/header::header"></div>
+<div class="jq22-container" id="rank">
+    <div class="login-wrap">
+        <div class="login-html">
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab" th:text="${videoLanguage.signin}"></label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab" th:text="${videoLanguage.signup}"></label>
+
+            <div class="login-form">
+                <div class="sign-in-htm">
+                    <form class="form">
+                        <div class="group">
+                            <label for="user" class="label" th:text="${videoLanguage.username}"></label>
+                            <input id="user" type="text" th:placeholder="${videoLanguage.usernametype}" class="input">
+                        </div>
+                        <div class="group">
+                            <label for="pass" class="label"  th:text="${videoLanguage.pass}"></label>
+                            <input id="pass" type="password" class="input" th:placeholder="${videoLanguage.passtype}" max="12" data-type="password">
+                        </div>
+                        <div class="group">
+                            <input type="button" class="button"  onclick="login();" th:value="${videoLanguage.signin}" >
+                        </div>
+                        <div class="hr"></div>
+                        <div class="foot-lnk">
+                            <a href="#forgot" th:text="${videoLanguage.forget}" ></a>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div class="sign-up-htm">
+                    <div class="group">
+                        <label for="pass" class="label" th:text="${videoLanguage.reg_email}"></label>
+                        <input id="email" type="text" class="input" th:placeholder="${videoLanguage.usernametype}">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label" th:text="${videoLanguage.pass}"></label>
+                        <input id="password" type="password" class="input" th:placeholder="${videoLanguage.passtype}" data-type="password">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label" th:text="${videoLanguage.respass}"></label>
+                        <input id="respassword" type="password" class="input" data-type="password">
+                    </div>
+                    <div class="group">
+                        <input type="button" class="button" onclick="regist();" th:value="${videoLanguage.signup}">
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <a for="tab-1" th:text="${videoLanguage.forget}">Already Member?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="common/footer::footer"></div>
+</body>
+</html>
