@@ -6,7 +6,7 @@
       fh_movie
     </sql>
     <sql id="BASE_COLUMN">
-        m.id,m.moviceName,m.movicePictureUrl,m.movicePlayerUrl,m.moviceReleaseTime,m.moviceType,m.country,m.language
+        m.id,m.moviceName,m.movicePictureUrl,m.movicePlayerUrl,m.moviceLocalUrl ,m.moviceReleaseTime,m.moviceType,m.country,m.language
         ,m.director,m.mainCharacter,m.duration,m.created
     </sql>
 
@@ -76,5 +76,17 @@
         </where>
         ORDER BY m.created DESC
     </select>
+
+
+    <update id="update" parameterType="com.springbootvideo.model.Movie">
+        UPDATE
+        <include refid="BASE_TABLE"/>
+        <set>
+            <if test="moviceLocalUrl != null">
+                moviceLocalUrl = #{moviceLocalUrl, jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE id = #{id, jdbcType=INTEGER}
+    </update>
 
 </mapper>

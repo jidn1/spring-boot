@@ -19,7 +19,7 @@
 
           <li th:each="m : ${mLists}">
             <a th:href="${video.player(m.id)}" class="img">
-              <img th:src="${m.movicePictureUrl}" alt="#" class="img_index">
+              <img th:src="${m.ossPictureUrl}" alt="#" class="img_index">
               <span class="mask"></span>
               <i class="icon-play"></i>
             </a>
