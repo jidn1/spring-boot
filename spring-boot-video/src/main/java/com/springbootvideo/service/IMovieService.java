@@ -44,4 +44,7 @@ public interface IMovieService {
      */
     void initMovieAll(Map<String,String> map);
 
+
+    void initOssUrl();
+
 }

@@ -5,6 +5,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.springbootvideo.common.constant.VideoConstant;
 import com.springbootvideo.common.service.RedisService;
+import com.springbootvideo.common.util.FileUtil;
+import com.springbootvideo.common.util.OssUtil;
 import com.springbootvideo.dao.MovieDao;
 import com.springbootvideo.model.Movie;
 import com.springbootvideo.model.MovieCon;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -34,6 +37,11 @@ public class MovieServiceImpl implements IMovieService {
     private MovieDao movieDao;
 
     @Resource
+    private FileUtil fileUtil;
+    @Resource
+    private OssUtil ossUtil;
+
+    @Resource
     private RedisService redisService;
 
     @Override
@@ -41,6 +49,9 @@ public class MovieServiceImpl implements IMovieService {
     public PageInfo<Movie> findPageBySql(MovieCon m, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<Movie> pageBySql = movieDao.findPageBySql(m);
+        pageBySql.forEach( movie -> {
+            movie.setOssPictureUrl(ossUtil.getUrl(movie.getMoviceLocalUrl(),true));
+        });
         PageInfo<Movie> pageInfo = new PageInfo<>(pageBySql);
         return pageInfo;
     }
@@ -49,6 +60,9 @@ public class MovieServiceImpl implements IMovieService {
     public void initTopHome() {
        try {
            List<Movie> topHome = movieDao.findTopHome();
+           topHome.forEach( movie -> {
+               movie.setOssPictureUrl(ossUtil.getUrl(movie.getMoviceLocalUrl(),true));
+           });
            String homeStr = JSON.toJSONString(topHome);
            redisService.save(VideoConstant.TOP_HOME,homeStr);
            logger.info("初始化首页电影信息"+VideoConstant.MOVIE_LIBRARY);
@@ -71,6 +85,23 @@ public class MovieServiceImpl implements IMovieService {
                 redisService.hset(VideoConstant.MOVIE_LIBRARY,m.getId().toString(),m.getMovicePlayerUrl());
             });
             logger.info("初始化电影播放信息"+VideoConstant.MOVIE_LIBRARY);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void initOssUrl() {
+        try {
+            List<Movie> movies = movieDao.findMovieByCon(null);
+            movies.forEach( m -> {
+                if(StringUtils.isEmpty(m.getMoviceLocalUrl())){
+                    String url = fileUtil.downFileFromHttp(m.getMovicePictureUrl());
+                    m.setMoviceLocalUrl(url);
+                    movieDao.update(m);
+                }
+            });
+            logger.info("初始化电影海报");
         } catch (Exception e){
             e.printStackTrace();
         }

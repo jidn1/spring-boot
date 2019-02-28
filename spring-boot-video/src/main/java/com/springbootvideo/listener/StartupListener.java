@@ -37,6 +37,7 @@ public class StartupListener implements ServletContextListener {
         IMovieService movieService = (IMovieService)app.getBean("movieService");
         movieService.initTopHome();
         movieService.initMovieAll(null);
+        movieService.initOssUrl();
 
         //初始化VIP信息
         IUserService userService = (IUserService)app.getBean("userService");

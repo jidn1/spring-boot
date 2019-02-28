@@ -33,4 +33,6 @@ public interface MovieDao {
 
 
     List<Movie> findMovieByCon(Map<String,String> map);
+
+    void update(Movie m);
 }

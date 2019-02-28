@@ -22,6 +22,8 @@ public class Movie {
 
     private String movicePlayerUrl;//电影播放
 
+    private  String moviceLocalUrl;//本地海报路径
+
     private Date moviceReleaseTime;//上映时间
 
     private String moviceType;//电影类型
@@ -37,6 +39,8 @@ public class Movie {
     private Integer duration;//电影时长
 
     private Date created;
+
+    private String ossPictureUrl;
 
 
 }
