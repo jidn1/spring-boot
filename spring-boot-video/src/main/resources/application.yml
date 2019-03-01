@@ -1,13 +1,13 @@
 spring:
   profiles:
-    active: prod
+    active: dev
 
 
 
 app:
   oss:
-    endpoint: http://oss-cn-beijing.aliyuncs.com
-    accessKeyId: LTAIuvJKeN9XnIAU
-    accessKeySecret: Z9S8l2Zjr1qfkjS41XBcuUWmGYLFLP
-    publicBucketName: zjjtv-public
-    privateBucketName: zjjtv-private
+    endpoint:
+    accessKeyId:
+    accessKeySecret:
+    publicBucketName:
+    privateBucketName:
