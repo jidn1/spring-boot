@@ -13,7 +13,7 @@
  <tr>&#x000A;
  <td>Spring-Boot</td>&#x000A;<td>1.5.9</td>&#x000A;<td>Web框架</td>&#x000A;<td><a href=""></a></td>
  &#x000A;</tr>&#x000A;
- <tr>&#x000A;<td>JDK</td>&#x000A;<td>1.8</td>&#x000A;<td>可视化开发工具</td>&#x000A;<td><a href=""></a></td>&#x000A;</tr>&#x000A;
+ <tr>&#x000A;<td>JDK</td>&#x000A;<td>1.8</td>&#x000A;<td>开发环境</td>&#x000A;<td><a href=""></a></td>&#x000A;</tr>&#x000A;
  </tbody>&#x000A;
  </table>
  
