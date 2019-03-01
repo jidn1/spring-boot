@@ -9,18 +9,7 @@ import java.util.UUID;
  * @Description: uuid生成器
  */
 public class UUIDUtil {
-    /**
-     * 生成UUID
-     * <p>
-     * TODO
-     * </p>
-     *
-     * @author: Liu Shilei
-     * @param: @return
-     * @return: String
-     * @Date : 2015年12月7日 下午3:27:56
-     * @throws:
-     */
+
     public static String getUUID() {
         UUID uuid = UUID.randomUUID();
         return uuid.toString().replace("-", "");
