@@ -2,6 +2,13 @@ var num = 0;
 
 $(function () {
 
+    $("nav.header-nav ul li").click(function (e) {
+        $("nav.header-nav ul li").each(function () {
+            $(this).find("a").removeClass('header-nav__cur');
+        })
+        $(this).find("a").addClass('header-nav__cur');
+    })
+
   // search 反馈结果
   var $search = $('.header-search');
   var $search_text = $search.find('.text');
