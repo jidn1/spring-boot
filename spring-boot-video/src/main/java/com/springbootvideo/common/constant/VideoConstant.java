@@ -20,7 +20,7 @@ public class VideoConstant {
 
     public static final String USER = "film_user";
 
-    public static final String BASE_SITE = "/springboot_video/";
+    public static final String BASE_SITE = "/";
 
     public static final String TOP_HOME = "top_home";
 

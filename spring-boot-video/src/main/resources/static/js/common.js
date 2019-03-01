@@ -24,6 +24,7 @@ function player(){
     var path = getRootPath();
     var hrefUrl = window.document.location.href;
     let strings = hrefUrl.split("player/");
+    console.log(strings[0])
     $.ajax({
         type: "POST",
         url: path+"/getPlayer",

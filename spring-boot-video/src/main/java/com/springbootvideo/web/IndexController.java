@@ -7,6 +7,7 @@ import com.springbootvideo.common.service.RedisService;
 import com.springbootvideo.common.constant.VideoConstant;
 import com.springbootvideo.common.util.ErrorPageConfig;
 import com.springbootvideo.common.util.IpUtil;
+import com.springbootvideo.common.util.OssUtil;
 import com.springbootvideo.model.Movie;
 import com.springbootvideo.model.MovieCon;
 import com.springbootvideo.model.User;
@@ -36,6 +37,9 @@ import java.util.Map;
 @Controller
 public class IndexController {
 
+
+    @Resource
+    private OssUtil ossUtil;
     @Resource
     private RedisService redisService;
     @Resource
@@ -52,6 +56,9 @@ public class IndexController {
         try {
             String topMovie = redisService.get(VideoConstant.TOP_HOME);
             List<Movie> movieList = JSONObject.parseArray(topMovie, Movie.class);
+            movieList.forEach( movie -> {
+                movie.setOssPictureUrl(ossUtil.getUrl(movie.getMoviceLocalUrl(),true));
+            });
             request.setAttribute("mLists",movieList);
         } catch (Exception e){
             e.printStackTrace();
@@ -101,7 +108,7 @@ public class IndexController {
         return "content/vipLibrary";
     }
 
-    @RequestMapping("/getPlayer")
+    @RequestMapping("/player/getPlayer")
     @ResponseBody
     public Object getPlayerUrl(HttpServletRequest request){
         Map<String,String> map = new HashMap<String,String>();

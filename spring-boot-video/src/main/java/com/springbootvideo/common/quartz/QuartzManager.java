@@ -2,6 +2,7 @@ package com.springbootvideo.common.quartz;
 
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.Date;
 
@@ -11,6 +12,7 @@ import java.util.Date;
  * @Date: 2019/2/19 15:57
  * @Description: quartz调度器
  */
+@Configuration
 public class QuartzManager {
 
     private static SchedulerFactory gSchedulerFactory = new StdSchedulerFactory();

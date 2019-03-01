@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <link rel="icon" th:href="${videoLanguage.webicon}">
     <title th:text="${videoLanguage.playering}"></title>
-    <link th:href="@{/video/video-js.min.css}" rel="stylesheet">
 </head>
 <style>
     body {
@@ -18,8 +17,7 @@
         margin-top: 19px;
     }
 </style>
-<script th:src="@{/video/video.min.js}" ></script>
-<script th:src="@{/js/jquery.min.js}" ></script>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 <script th:src="@{/js/common.js}" ></script>
 <script>
     $(function () {

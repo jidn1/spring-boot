@@ -60,9 +60,6 @@ public class MovieServiceImpl implements IMovieService {
     public void initTopHome() {
        try {
            List<Movie> topHome = movieDao.findTopHome();
-           topHome.forEach( movie -> {
-               movie.setOssPictureUrl(ossUtil.getUrl(movie.getMoviceLocalUrl(),true));
-           });
            String homeStr = JSON.toJSONString(topHome);
            redisService.save(VideoConstant.TOP_HOME,homeStr);
            logger.info("初始化首页电影信息"+VideoConstant.MOVIE_LIBRARY);

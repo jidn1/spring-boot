@@ -1,5 +1,8 @@
 package com.springbootvideo.listener;
 
+import com.springbootvideo.common.quartz.QuartzJob;
+import com.springbootvideo.common.quartz.QuartzManager;
+import com.springbootvideo.common.quartz.ScheduleJob;
 import com.springbootvideo.common.util.SpringUtil;
 import com.springbootvideo.service.IConfigService;
 import com.springbootvideo.service.IMovieService;
@@ -37,11 +40,16 @@ public class StartupListener implements ServletContextListener {
         IMovieService movieService = (IMovieService)app.getBean("movieService");
         movieService.initTopHome();
         movieService.initMovieAll(null);
-        movieService.initOssUrl();
 
         //初始化VIP信息
         IUserService userService = (IUserService)app.getBean("userService");
         userService.initVip();
+
+
+        ScheduleJob initOssJob = new ScheduleJob();
+        initOssJob.setSpringId("movieService");
+        initOssJob.setMethodName("initOssUrl");
+        QuartzManager.addJob("initOssJob", initOssJob, QuartzJob.class, "0 59 23 * * ?");
 
         logger.info("=======================【StartupListener 已加载完毕】==================================");
     }
