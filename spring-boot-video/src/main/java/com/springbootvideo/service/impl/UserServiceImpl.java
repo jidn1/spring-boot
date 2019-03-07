@@ -53,6 +53,7 @@ public class UserServiceImpl implements IUserService {
                 userDao.save(user);
                 jsonResult.setSuccess(true);
                 jsonResult.setMsg(VideoConstant.REGIST_SUCCESS);
+
                 mailService.sendEmail(user.getEmail());
             } else {
                 jsonResult.setSuccess(true);

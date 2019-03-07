@@ -3,7 +3,6 @@ package com.springbootvideo.listener;
 import com.springbootvideo.common.quartz.QuartzJob;
 import com.springbootvideo.common.quartz.QuartzManager;
 import com.springbootvideo.common.quartz.ScheduleJob;
-import com.springbootvideo.common.util.SpringUtil;
 import com.springbootvideo.service.IConfigService;
 import com.springbootvideo.service.IMovieService;
 import com.springbootvideo.service.IUserService;

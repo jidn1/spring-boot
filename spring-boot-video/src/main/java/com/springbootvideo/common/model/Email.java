@@ -19,7 +19,7 @@ public class Email implements Serializable {
     private String email;//接收方邮件
     private String subject;//主题
     private String content;//邮件内容
-
+    private String sign;
     private String userName;//发送人
     //选填
     private String template;//模板

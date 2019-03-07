@@ -31,6 +31,7 @@ public class ConsumeMailQueue {
         ExecutorService e = Executors.newFixedThreadPool(2);// 两个大小的固定线程池
         e.submit(new PollMail(mailService));
         e.submit(new PollMail(mailService));
+        logger.info("========================Email Queue init==========================");
     }
 
     class PollMail implements Runnable {
@@ -47,7 +48,7 @@ public class ConsumeMailQueue {
                     Email mail = MailQueue.getMailQueue().consume();
                     if (mail != null) {
                         logger.info("剩余邮件总数:{}",MailQueue.getMailQueue().size());
-                        mailService.send(mail);
+                        mailService.sendHtml(mail);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -57,6 +58,6 @@ public class ConsumeMailQueue {
     }
     @PreDestroy
     public void stopThread() {
-        logger.info("destroy");
+        logger.info("========================Email Queue destroy==========================");
     }
 }

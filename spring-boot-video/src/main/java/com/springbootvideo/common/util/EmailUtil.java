@@ -22,6 +22,8 @@ public class EmailUtil {
         email.setContent(VideoConstant.EMAIL_SEND_CONTENT);
         email.setSubject(VideoConstant.EMAIL_SUBJECT);
         email.setUserName(userName);
+        email.setSign(VideoConstant.EMAIL_SUBJECT);
+        email.setTemplate("welcome");
         email.setEmail(em);
         return email;
     }

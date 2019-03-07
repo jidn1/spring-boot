@@ -18,6 +18,13 @@ public interface IMailService {
     void send(Email mail) throws Exception;
 
     /**
+     * 发送模板邮件
+     * @param mail
+     * @throws Exception
+     */
+    void sendHtml(Email mail) throws Exception;
+
+    /**
      * 队列
      * @param mail
      * @throws Exception
