@@ -23,8 +23,8 @@ public class SwaggerConfig {
 
     @Bean
     public Docket mailApi() {
-        return new Docket(DocumentationType.SWAGGER_2).groupName("video管理").apiInfo(apiInfo()).select()
-                .apis(RequestHandlerSelectors.basePackage("com.springbootvideo.web")).paths(PathSelectors.any()).build();
+        return new Docket(DocumentationType.SWAGGER_2).groupName("translate管理").apiInfo(apiInfo()).select()
+                .apis(RequestHandlerSelectors.basePackage("com.translate.web")).paths(PathSelectors.any()).build();
     }
 
 
