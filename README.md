@@ -20,8 +20,14 @@
  ## 案例
  不定期更新
  
- ## spirng-boot-hello
- 开启第一个springboot项目: https://github.com/jidn1/spring-boot/tree/master/spring-boot-hello
+## spirng-boot-hello
+开启第一个springboot项目: https://github.com/jidn1/spring-boot/tree/master/spring-boot-hello
  
- ## spirng-boot-video
-  用springboot搭建一个视频网站: https://github.com/jidn1/spring-boot/tree/master/spring-boot-video
+## spirng-boot-video
+用springboot搭建一个视频网站: https://github.com/jidn1/spring-boot/tree/master/spring-boot-video
+  
+## spirng-boot-tools
+用个人工具包: https://github.com/jidn1/spring-boot/tree/master/spring-boot-tools
+
+## spirng-boot-translate
+用百度翻译: https://github.com/jidn1/spring-boot/tree/master/spring-boot-translate
