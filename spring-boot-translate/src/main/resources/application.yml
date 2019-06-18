@@ -10,7 +10,6 @@ logging:
 
 
 
-
 #redis
 redis:
   # Redis数据库索引（默认为0）
@@ -45,3 +44,12 @@ spring:
   #服务的名字
   application:
     name: translate
+
+  #thymeleaf
+  thymeleaf:
+    prefix: classpath:/templates/
+    check-template-location: true
+    suffix: .html
+    encoding: UTF-8
+    mode: LEGACYHTML5
+    cache: false
