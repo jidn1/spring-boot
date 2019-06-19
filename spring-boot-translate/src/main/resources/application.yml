@@ -41,10 +41,6 @@ redis:
 spring:
   # 环境 normal|test
   profiles: test
-  #服务的名字
-  application:
-    name: translate
-
   #thymeleaf
   thymeleaf:
     prefix: classpath:/templates/
