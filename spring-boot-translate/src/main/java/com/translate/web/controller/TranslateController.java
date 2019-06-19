@@ -2,6 +2,7 @@ package com.translate.web.controller;
 
 import com.translate.baidu.api.SpeechApi;
 import com.translate.baidu.api.TranslateApi;
+import com.translate.common.util.OssUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -65,7 +66,9 @@ public class TranslateController {
 
             String url = SpeechApi.synthesis(txt);
 
-            result.put("to",url);
+            String url1 = OssUtil.getUrl(url, true);
+
+            result.put("to",url1);
 
             apiJsonResult.put("success","true");
             apiJsonResult.put("code","0");
