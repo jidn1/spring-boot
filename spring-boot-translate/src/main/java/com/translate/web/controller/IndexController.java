@@ -1,6 +1,7 @@
 package com.translate.web.controller;
 
 import io.swagger.annotations.*;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,8 +12,7 @@ import javax.servlet.http.HttpServletRequest;
  * @Description:
  */
 @Api(tags = "首页")
-@RestController
-@RequestMapping("/")
+@Controller
 public class IndexController {
 
     @ApiOperation(value = "首页", httpMethod = "POST", notes = "首页")
