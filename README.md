@@ -28,10 +28,13 @@ Spring Boot 使用的各种示例，以最简单、最实用为标准
 开启第一个springboot项目: https://github.com/jidn1/spring-boot/tree/master/spring-boot-hello
  
 ## spirng-boot-video
-用springboot搭建一个视频网站: https://github.com/jidn1/spring-boot/tree/master/spring-boot-video
+springboot搭建一个视频网站: https://github.com/jidn1/spring-boot/tree/master/spring-boot-video
   
 ## spirng-boot-tools
-用个人工具包: https://github.com/jidn1/spring-boot/tree/master/spring-boot-tools
+个人工具包: https://github.com/jidn1/spring-boot/tree/master/spring-boot-tools
 
 ## spirng-boot-translate
-用百度翻译: https://github.com/jidn1/spring-boot/tree/master/spring-boot-translate
+百度翻译: https://github.com/jidn1/spring-boot/tree/master/spring-boot-translate
+
+## spirng-boot-mq
+mq系列: https://github.com/jidn1/spring-boot/tree/master/spring-boot-mq
