@@ -73,12 +73,15 @@ public class TranslateApi {
                 lan = "kor";
                 break;
             case "zh_TW":
+            case "cht":
                 lan = "cht";
                 break;
             case "fr":
+            case "fra":
                 lan = "fra";
                 break;
             case "es":
+            case "spa":
                 lan = "spa";
                 break;
             case "jp":
