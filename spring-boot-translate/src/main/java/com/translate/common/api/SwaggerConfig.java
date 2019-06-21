@@ -1,5 +1,6 @@
 package com.translate.common.api;
 
+import com.translate.common.util.PropertiesUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -30,7 +31,12 @@ public class SwaggerConfig {
 
     // 预览地址:swagger-ui.html
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("Spring 中使用Swagger2构建文档").termsOfServiceUrl("http://www.zjjtv.top/")
-                .contact(new Contact("正经吉", "http://www.zjjtv.top/", "zjjtv@gmail.com")).version("1.0").build();
+        String swagger_title = PropertiesUtils.APP.getProperty("swagger_title");
+        String swagger_net = PropertiesUtils.APP.getProperty("swagger_net");
+        String swagger_contact = PropertiesUtils.APP.getProperty("swagger_contact");
+        String swagger_email = PropertiesUtils.APP.getProperty("swagger_email");
+
+        return new ApiInfoBuilder().title(swagger_title).termsOfServiceUrl(swagger_net)
+                .contact(new Contact(swagger_contact, swagger_net, swagger_email)).version("1.0").build();
     }
 }
