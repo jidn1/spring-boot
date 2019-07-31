@@ -2,6 +2,7 @@ package com.socket.handler;
 
 import com.alibaba.fastjson.JSON;
 import com.contants.SocketConstants;
+import com.socket.exception.WebSocketException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.*;
@@ -74,18 +75,15 @@ public abstract class BaseHandler implements WebSocketHandler {
     }
 
     protected void addSession(WebSocketSession session) {
-        String msg = (String) session.getAttributes().get(SocketConstants.WEBSOCKET_KEY);
+        System.out.println("成功建立连接");
         synchronized (session.getId()) {
-            List<WebSocketSession> sessionList = current.get(msg);
-            if (null != sessionList) {
-                sessionList.add(session);
-            } else {
-                List<WebSocketSession> currentSessiosn = new CopyOnWriteArrayList<>();
-                currentSessiosn.add(session);
-                current.put(msg, currentSessiosn);
+            String ID = (String) session.getAttributes().get(SocketConstants.WEBSOCKET_KEY);
+            System.out.println(ID);
+            if (ID != null) {
+                users.put(ID, session);
             }
+            System.out.println("当前在线人数："+users.size());
         }
-
         firstExecute(session);
     }
 
@@ -109,7 +107,7 @@ public abstract class BaseHandler implements WebSocketHandler {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new WebSocketException(e, WebSocketException.Code.SEND_MSG);
         }
         return false;
     }

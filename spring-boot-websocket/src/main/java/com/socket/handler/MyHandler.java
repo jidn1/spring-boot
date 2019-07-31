@@ -29,21 +29,20 @@ public class MyHandler extends AbstractSocketHandler {
 
         WebSocketSession session = users.get(clientId);
         System.out.println("sendMessage:" + session);
-        if (!session.isOpen()) { return false; }
-        try {
-            session.sendMessage(message);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (!session.isOpen()) {
             return false;
         }
+        sendMessage(session, message);
+
         return true;
     }
 
     /**
-     * 广播信息
+     * 发送消息给全体用户  广播
      * @param message
      * @return
      */
+    @Override
     public boolean sendMessageToAllUsers(TextMessage message) {
         boolean allSendSuccess = true;
         Set<String> clientIds = users.keySet();
@@ -52,9 +51,9 @@ public class MyHandler extends AbstractSocketHandler {
             try {
                 session = users.get(clientId);
                 if (session.isOpen()) {
-                    session.sendMessage(message);
+                    sendMessage(session, message);
                 }
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 allSendSuccess = false;
             }

@@ -23,6 +23,6 @@ public class SocketTimer {
 
     @Scheduled(fixedDelay = 5000)
     public void sendMessage(){
-        myHandler.sendMessageToUser("888",new TextMessage(""));
+        myHandler.sendMessageToUser("888",new TextMessage("服务器发送消息给客户端"));
     }
 }

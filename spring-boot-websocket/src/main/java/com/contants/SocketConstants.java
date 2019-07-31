@@ -11,4 +11,8 @@ public class SocketConstants {
     public static final String WEBSOCKET_USERID = "webSocket:userId";
 
     public static final String WEBSOCKET_KEY = "webSocketKey";
+
+    public static final String TOKEN_NAME = "token";
+
+    public static final String MARGIN_TOKEN_PREFIX = "init:session:";
 }

@@ -1,10 +1,15 @@
 package com.socket.handler;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.contants.SocketConstants;
+import com.socket.exception.WebSocketException;
+import com.socket.model.AcceptMessage;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
+
+import java.util.Map;
 
 /**
  * @Copyright © 北京互融时代软件有限公司
@@ -17,31 +22,31 @@ public abstract class AbstractSocketHandler extends BaseHandler{
 
     public abstract boolean sendMessageToUser(String clientId, TextMessage message);
 
+    public abstract boolean sendMessageToAllUsers(TextMessage message);
+
+
     @Override
-    public void handleMessage(WebSocketSession webSocketSession, WebSocketMessage<?> webSocketMessage) throws Exception {
+    public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) {
         try{
-            JSONObject jsonobject = JSONObject.parseObject(webSocketMessage.getPayload().toString());
-            System.out.println(jsonobject.get("id"));
-            System.out.println(jsonobject.get("message")+":来自"+(String)webSocketSession.getAttributes().get(SocketConstants.WEBSOCKET_KEY)+"的消息");
-            sendMessageToUser(jsonobject.get("id")+"",new TextMessage("服务器收到了，hello!"));
+            if (message.getPayloadLength() == 0) {
+                return;
+            }
+            AcceptMessage acceptMessage = JSON.parseObject(message.getPayload().toString(), AcceptMessage.class);
+
+            System.out.println(acceptMessage.getMsg()+":来自"+(String)session.getAttributes().get(SocketConstants.WEBSOCKET_KEY)+"的消息");
+
+            sendMessageToUser(acceptMessage.getUserId()+"",new TextMessage("服务器收到了，hello!"));
         }catch(Exception e){
-            e.printStackTrace();
+            throw new WebSocketException(e, WebSocketException.Code.SEND_ERROR);
         }
     }
 
     @Override
     protected void firstExecute(WebSocketSession session){
-        System.out.println("成功建立连接");
-        String ID = session.getUri().toString().split("ID=")[1];
-        System.out.println(ID);
+        String ID = (String)session.getAttributes().get(SocketConstants.WEBSOCKET_KEY);
         if (ID != null) {
-            users.put(ID, session);
             sendMessage(session, new TextMessage("成功建立socket连接"));
-            System.out.println(ID);
-            System.out.println(session);
         }
-
-        System.out.println("当前在线人数："+users.size());
     }
 
 
