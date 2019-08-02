@@ -15,4 +15,6 @@ public class SocketConstants {
     public static final String TOKEN_NAME = "token";
 
     public static final String MARGIN_TOKEN_PREFIX = "init:session:";
+
+    public static final String WEBSOCKET_USERNAME = "WEBSOCKET_USERNAME";
 }

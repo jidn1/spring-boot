@@ -1,5 +1,6 @@
 package com.web;
 
+import com.contants.SocketConstants;
 import com.util.GeneratorUtil;
 import com.util.RedisUtils;
 import com.util.SessionRedis;
@@ -41,5 +42,47 @@ public class IndexController {
             e.printStackTrace();
         }
         return "index";
+    }
+
+
+
+
+    /**
+     * 第一个用户
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("/chat1")
+    public String chat1(HttpServletRequest request) {
+        // 假设用户tom登录,存储到session中
+        request.getSession().setAttribute(SocketConstants.WEBSOCKET_USERNAME, "tom");
+        return "chat1";
+    }
+
+    /**
+     * 第二个用户登录
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("/chat2")
+    public String chat2(HttpServletRequest request) {
+        // 假设用户jerry登录,存储到session中
+        request.getSession().setAttribute(SocketConstants.WEBSOCKET_USERNAME, "jerry");
+        return "chat2";
+    }
+
+    /**
+     * 第三个用户登录
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("/chat3")
+    public String chat3(HttpServletRequest request) {
+        // 假设用户jack登录,存储到session中
+        request.getSession().setAttribute(SocketConstants.WEBSOCKET_USERNAME, "jack");
+        return "chat3";
     }
 }

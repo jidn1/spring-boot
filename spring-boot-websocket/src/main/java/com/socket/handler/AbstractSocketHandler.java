@@ -32,10 +32,13 @@ public abstract class AbstractSocketHandler extends BaseHandler{
                 return;
             }
             AcceptMessage acceptMessage = JSON.parseObject(message.getPayload().toString(), AcceptMessage.class);
+            if(acceptMessage.getType().equals("1")){
+                sendMessageToAllUsers(new TextMessage("发送全体消息"));
+            } else {
+                System.out.println(acceptMessage.getMsg()+":来自"+acceptMessage.getUserId()+"的消息");
 
-            System.out.println(acceptMessage.getMsg()+":来自"+acceptMessage.getUserId()+"的消息");
-
-            sendMessageToUser(acceptMessage.getUserId()+"",new TextMessage("服务器收到了，hello!"));
+                sendMessageToUser(acceptMessage.getUserId()+"",new TextMessage("服务器收到了，hello!"));
+            }
         }catch(Exception e){
             throw new WebSocketException(e, WebSocketException.Code.SEND_ERROR);
         }
