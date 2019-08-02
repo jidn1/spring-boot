@@ -77,7 +77,7 @@ public abstract class BaseHandler implements WebSocketHandler {
     protected void addSession(WebSocketSession session) {
         System.out.println("成功建立连接");
         synchronized (session.getId()) {
-            String ID = (String) session.getAttributes().get(SocketConstants.WEBSOCKET_KEY);
+            String ID = (String) session.getAttributes().get(SocketConstants.WEBSOCKET_USERID);
             System.out.println(ID);
             if (ID != null) {
                 users.put(ID, session);
@@ -90,19 +90,16 @@ public abstract class BaseHandler implements WebSocketHandler {
     protected void removeSession(WebSocketSession session) {
         String msg = (String) session.getAttributes().get(SocketConstants.WEBSOCKET_KEY);
         synchronized (session.getId()) {
-            List<WebSocketSession> sessions = current.get(msg);
-            sessions.remove(session);
-            if (sessions.size() == 0) {
-                current.remove(msg);
-            }
+            users.get(msg);
+
         }
     }
 
-    protected boolean sendMessage(WebSocketSession session, Object obj) {
+    protected boolean sendMessage(WebSocketSession session, TextMessage message) {
         try {
             synchronized (session.getId()) {
                 if (session.isOpen()) {
-                    session.sendMessage(hexStr2Byte(JSON.toJSONString(obj)));
+                    session.sendMessage(message);
                     return true;
                 }
             }

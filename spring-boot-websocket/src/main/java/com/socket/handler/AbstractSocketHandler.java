@@ -33,7 +33,7 @@ public abstract class AbstractSocketHandler extends BaseHandler{
             }
             AcceptMessage acceptMessage = JSON.parseObject(message.getPayload().toString(), AcceptMessage.class);
 
-            System.out.println(acceptMessage.getMsg()+":来自"+(String)session.getAttributes().get(SocketConstants.WEBSOCKET_KEY)+"的消息");
+            System.out.println(acceptMessage.getMsg()+":来自"+acceptMessage.getUserId()+"的消息");
 
             sendMessageToUser(acceptMessage.getUserId()+"",new TextMessage("服务器收到了，hello!"));
         }catch(Exception e){

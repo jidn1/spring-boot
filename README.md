@@ -38,3 +38,6 @@ springboot搭建一个视频网站: https://github.com/jidn1/spring-boot/tree/ma
 
 ## spirng-boot-mq
 mq系列: https://github.com/jidn1/spring-boot/tree/master/spring-boot-mq
+
+## spirng-boot-websocket
+springboot整合WebSocket: https://github.com/jidn1/spring-boot/tree/master/spring-boot-websocket

@@ -11,7 +11,7 @@ Welcome<br/>
 <div id="message">
 </div>
 
-<input type="hidden" id="token" value="${token}">
+<input type="hidden" id="token" th:value="${token}">
 <!-- 公共JS -->
 <script type="text/javascript"  data-th-src="@{/js/jquery.min.js}"></script>
 
@@ -44,8 +44,7 @@ Welcome<br/>
 
         //打开webSokcet连接时，回调该函数
         websocket.onopen = function () {
-            var msg = JSON.stringify({userId: '888', token:"init:session:0-L000190731154025"});
-            this.websocket.send(msg);
+
             console.log("onpen");
         }
 
