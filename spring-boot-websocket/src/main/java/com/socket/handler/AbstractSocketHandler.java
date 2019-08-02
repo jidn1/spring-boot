@@ -46,7 +46,7 @@ public abstract class AbstractSocketHandler extends BaseHandler{
 
     @Override
     protected void firstExecute(WebSocketSession session){
-        String ID = (String)session.getAttributes().get(SocketConstants.WEBSOCKET_KEY);
+        String ID = (String)session.getAttributes().get(SocketConstants.WEBSOCKET_USERID);
         if (ID != null) {
             sendMessage(session, new TextMessage("成功建立socket连接"));
         }
