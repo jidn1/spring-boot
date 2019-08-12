@@ -1,5 +1,7 @@
 package com.translate.common.util;
 
+import com.translate.common.constant.TranslateConstant;
+
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -47,7 +49,7 @@ public class TranslateUtil {
 
             // 读取服务器的数据
             InputStream is = conn.getInputStream();
-            BufferedReader br = new BufferedReader(new InputStreamReader(is,"UTF-8"));
+            BufferedReader br = new BufferedReader(new InputStreamReader(is, TranslateConstant.UTF8));
             StringBuilder builder = new StringBuilder();
             String line = null;
             while ((line = br.readLine()) != null) {
