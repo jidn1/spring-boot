@@ -41,3 +41,6 @@ mq系列: https://github.com/jidn1/spring-boot/tree/master/spring-boot-mq
 
 ## spirng-boot-websocket
 springboot整合WebSocket: https://github.com/jidn1/spring-boot/tree/master/spring-boot-websocket
+
+## spirng-boot-allatori
+springboot整合allatori混淆加密: https://github.com/jidn1/spring-boot/tree/master/spring-boot-allatori
