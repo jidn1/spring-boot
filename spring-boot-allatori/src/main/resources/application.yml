@@ -1,0 +1,22 @@
+#server配置信息
+server:
+  port: 9091
+  servlet:
+    context-path: /allatori
+
+logging:
+  name: allatori
+  path: /logs/allatori
+
+
+spring:
+  # 环境 normal|test
+  profiles: test
+  #thymeleaf
+  thymeleaf:
+    prefix: classpath:/templates/
+    check-template-location: true
+    suffix: .html
+    encoding: UTF-8
+    mode: LEGACYHTML5
+    cache: false

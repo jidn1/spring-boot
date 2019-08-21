@@ -1,0 +1,14 @@
+<config>
+    <input>
+        <jar in="spring-boot-allatori-0.0.1-SNAPSHOT.jar" out="spring-boot-allatori-0.0.1-SNAPSHOT-obfuscated.jar"/>
+    </input>
+    <keep-names>
+        <class access="protected+">
+            <field access="protected+"/>
+            <method access="protected+"/>
+        </class>
+    </keep-names>
+    <property name="log-file" value="log.xml"/>
+
+    <expiry date="2019/08/20" string="EXPIRED!"/>
+</config>
