@@ -8,7 +8,7 @@
             <method access="protected+"/>
         </class>
     </keep-names>
-    <property name="log-file" value="log.xml"/>
+    <property name="log-file" value="../target/log.xml"/>
 
     <expiry date="2019/08/20" string="EXPIRED!"/>
 </config>
