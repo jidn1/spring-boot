@@ -4,6 +4,7 @@ import com.translate.baidu.api.SpeechApi;
 import com.translate.baidu.api.TranslateApi;
 import com.translate.common.util.OssUtil;
 import com.translate.google.api.GoogleApi;
+import com.translate.web.model.JsonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -40,12 +41,12 @@ public class TranslateController {
             result.put("from",from);
             result.put("auto",auto);
 
-            String transResult = api.getTransResult(from,auto);
+            JsonResult jsonResult = api.getTransResult(from, auto);
 
-            result.put("to",transResult);
+            result.put("to",jsonResult.getMsg());
 
-            apiJsonResult.put("success","true");
-            apiJsonResult.put("code","0");
+            apiJsonResult.put("success",jsonResult.getSuccess());
+            apiJsonResult.put("code",jsonResult.getCode());
             apiJsonResult.put("msg",result);
         } catch (Exception e){
             e.printStackTrace();
@@ -68,12 +69,12 @@ public class TranslateController {
             result.put("from",from);
             result.put("auto",auto);
 
-            String transResult = api.translate(from,auto);
+            JsonResult jsonResult = api.translate(from,auto);
 
-            result.put("to",transResult);
+            result.put("to",jsonResult.getMsg());
 
-            apiJsonResult.put("success","true");
-            apiJsonResult.put("code","0");
+            apiJsonResult.put("success",jsonResult.getSuccess());
+            apiJsonResult.put("code",jsonResult.getCode());
             apiJsonResult.put("msg",result);
         } catch (Exception e){
             e.printStackTrace();

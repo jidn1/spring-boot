@@ -3,6 +3,7 @@ package com.translate.baidu.api;
 import com.translate.common.util.PropertiesUtils;
 import com.translate.common.util.SignUtil;
 import com.translate.common.util.TranslateUtil;
+import com.translate.web.model.JsonResult;
 import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
@@ -34,21 +35,21 @@ public class TranslateApi {
         this.securityKey = securityKey;
     }
 
-    public String getTransResult(String str,String to) {
+    public JsonResult getTransResult(String str, String to) {
         if("zh_CN".equals(to) || StringUtils.isEmpty(TRANS_API_HOST)){
-            return str;
+            return new JsonResult().setSuccess(true).setMsg(str);
         }
         Map<String, String> params = buildParams(str, FORM,getLanguage(to));
         return getResult(TRANS_API_HOST, params);
     }
 
 
-    public String getResult(String host, Map<String, String> params){
+    public JsonResult getResult(String host, Map<String, String> params){
         String  transResult = "";
         String s = TranslateUtil.get(host, params);
         if(s.contains("error_code")){
             System.out.println("=========百度翻译结果信息:"+s);
-            return null;
+            return new JsonResult().setSuccess(false).setCode("10053").setMsg("翻译异常");
         }
         char [] content_result_temp = s.toCharArray();
         for(int i = content_result_temp.length-5;;i--) {
@@ -57,7 +58,7 @@ public class TranslateApi {
             }
             transResult = content_result_temp[i] + transResult;
         }
-        return transResult;
+        return new JsonResult().setSuccess(true).setCode("0").setMsg(transResult);
     }
 
     private String getLanguage(String language){
