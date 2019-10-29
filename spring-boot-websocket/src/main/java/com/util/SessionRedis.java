@@ -14,4 +14,6 @@ public class SessionRedis {
     private String marginToken;
 
     private String userId;
+
+    private String msg;
 }

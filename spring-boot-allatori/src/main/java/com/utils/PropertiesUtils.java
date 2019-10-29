@@ -14,7 +14,7 @@ public class PropertiesUtils {
     static {
         APP = new Properties();
         try {
-            APP.load(PropertiesUtils.class.getClassLoader().getResourceAsStream("app.properties"));
+            APP.load(PropertiesUtils.class.getClassLoader().getResourceAsStream("BOOT-INF/app.properties"));
         } catch (Exception e) {
             e.printStackTrace();
         }

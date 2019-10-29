@@ -35,6 +35,7 @@ public class MyHandler extends AbstractSocketHandler {
         sendMessage(session, message);
 
         return true;
+
     }
 
     /**

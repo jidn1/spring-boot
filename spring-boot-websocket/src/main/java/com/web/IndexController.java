@@ -56,7 +56,7 @@ public class IndexController {
     @RequestMapping("/chat1")
     public String chat1(HttpServletRequest request) {
         // 假设用户tom登录,存储到session中
-        request.getSession().setAttribute(SocketConstants.WEBSOCKET_USERNAME, "tom");
+        request.getSession().setAttribute(SocketConstants.WEBSOCKET_USERID, "tom");
         return "chat1";
     }
 
@@ -69,7 +69,7 @@ public class IndexController {
     @RequestMapping("/chat2")
     public String chat2(HttpServletRequest request) {
         // 假设用户jerry登录,存储到session中
-        request.getSession().setAttribute(SocketConstants.WEBSOCKET_USERNAME, "jerry");
+        request.getSession().setAttribute(SocketConstants.WEBSOCKET_USERID, "jerry");
         return "chat2";
     }
 
@@ -82,7 +82,7 @@ public class IndexController {
     @RequestMapping("/chat3")
     public String chat3(HttpServletRequest request) {
         // 假设用户jack登录,存储到session中
-        request.getSession().setAttribute(SocketConstants.WEBSOCKET_USERNAME, "jack");
+        request.getSession().setAttribute(SocketConstants.WEBSOCKET_USERID, "jack");
         return "chat3";
     }
 }

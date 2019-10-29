@@ -6,6 +6,7 @@ import com.translate.common.util.PropertiesUtils;
 import com.translate.google.model.Browser;
 import com.translate.google.util.RegularUtil;
 import com.translate.google.util.StringUtils;
+import com.translate.web.model.JsonResult;
 
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
@@ -106,15 +107,17 @@ public class GoogleApi {
         return result;
     }
 
-    public String translate(String word, String from, String to) throws Exception {
+    public JsonResult translate(String word, String from, String to) throws Exception {
         if (StringUtils.isBlank(word)) {
-            return null;
+            return new JsonResult().setSuccess(false).setCode("1006").setMsg("原文为空");
         }
 
         String tkk = getTKK();
 
         if (StringUtils.isBlank(tkk)) {
-            throw new RuntimeException("无法获取 tkk");
+            //throw new RuntimeException("无法获取 tkk");
+            System.out.println("无法获取 tkk");
+            return new JsonResult().setSuccess(false).setCode("1007").setMsg("无法获取tkk");
         }
 
         String tk = getTK(word, tkk);
@@ -150,9 +153,11 @@ public class GoogleApi {
                 }
             }
 
-            return rBuffer.toString();
+            return new JsonResult().setSuccess(true).setCode("0").setMsg(rBuffer.toString());
         } catch (Exception e) {
-            throw new RuntimeException("结果集解析出错");
+            //throw new RuntimeException("结果集解析出错");
+            System.out.println("结果集解析出错");
+            return new JsonResult().setSuccess(false).setCode("1009").setMsg("异常");
         }
     }
 
@@ -164,7 +169,7 @@ public class GoogleApi {
      * @return
      * @throws Exception
      */
-    public String translate(String word, String to) throws Exception {
+    public JsonResult translate(String word, String to) throws Exception {
         return translate(word, null, getLanguage(to));
     }
 

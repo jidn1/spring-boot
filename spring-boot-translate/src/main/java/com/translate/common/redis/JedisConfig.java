@@ -14,7 +14,7 @@ import redis.clients.jedis.JedisPoolConfig;
  * @Date: 2019/6/10 11:49
  * @Description:
  */
-@Configuration
+//@Configuration
 public class JedisConfig {
 
     private Logger logger = LoggerFactory.getLogger(JedisConfig.class);
