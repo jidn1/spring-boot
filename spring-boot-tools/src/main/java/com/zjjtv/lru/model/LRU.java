@@ -175,5 +175,7 @@ public class LRU<K, V> {
 
         lru.remove(3);
         System.out.println("移除key=3的之后的链表:"+lru.toString());
+
+        Integer.parseInt("1",1);
     }
 }

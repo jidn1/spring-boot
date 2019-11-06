@@ -36,8 +36,8 @@ public abstract class AbstractSocketHandler extends BaseHandler{
                 sendMessageToAllUsers(new TextMessage("发送全体消息"));
             } else {
                 System.out.println(acceptMessage.getMsg()+":来自"+acceptMessage.getUserId()+"的消息");
-
-                sendMessageToUser(acceptMessage.getUserId()+"",new TextMessage("服务器收到了，hello!"));
+                String to = acceptMessage.getTo();
+                sendMessageToUser(to+"",new TextMessage(acceptMessage.getMsg()));
             }
         }catch(Exception e){
             throw new WebSocketException(e, WebSocketException.Code.SEND_ERROR);

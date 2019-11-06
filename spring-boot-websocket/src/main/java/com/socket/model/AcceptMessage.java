@@ -19,4 +19,6 @@ public class AcceptMessage {
      * 消息类型 0 个人 1 全部
      */
     private Integer type;
+
+    private String to;
 }
