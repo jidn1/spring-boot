@@ -12,7 +12,6 @@ public class DoublePointLinkedList {
 
     private class Node {
 
-        private Node prev;
         private Node next;
         private Object data;
 
@@ -45,7 +44,6 @@ public class DoublePointLinkedList {
             size++;
         } else {
             node.next = head;
-            head.prev = node;
             head = node;
             size++;
         }
@@ -59,7 +57,6 @@ public class DoublePointLinkedList {
             tail = node;
             size++;
         } else {
-            node.prev = tail;
             tail.next = node;
             tail = node;
             size++;
@@ -85,21 +82,7 @@ public class DoublePointLinkedList {
         return true;
     }
 
-    public boolean deleteTail() {
-        if (size == 0) {
-            return false;
-        }
-        if (tail.prev == null) {
-            tail = null;
-            tail = null;
-        } else {
-            tail = tail.prev;
-            tail.next = null;
-        }
 
-        size--;
-        return true;
-    }
 
     public int getSize() {
         return size;
@@ -166,19 +149,17 @@ public class DoublePointLinkedList {
         dpll.addTail("c");
 
         dpll.display();
-        System.out.println("");
-        dpll.addHead("d");
-
-        dpll.display();
-        System.out.println("");
-
-        dpll.deleteTail();
-
-        dpll.display();
-
-        System.out.println("");
-        dpll.addTail("c");
-        dpll.display();
+//        System.out.println("");
+//        dpll.addHead("d");
+//
+//        dpll.display();
+//        System.out.println("");
+//
+//        dpll.display();
+//
+//        System.out.println("");
+//        dpll.addTail("c");
+//        dpll.display();
 
     }
 
