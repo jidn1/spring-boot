@@ -44,3 +44,12 @@ springboot整合WebSocket: https://github.com/jidn1/spring-boot/tree/master/spri
 
 ## spirng-boot-allatori
 springboot整合allatori混淆加密: https://github.com/jidn1/spring-boot/tree/master/spring-boot-allatori
+
+## spirng-boot-lua
+springboot整合lua笔记: https://github.com/jidn1/spring-boot/tree/master/spring-boot-lua
+
+## spirng-boot-notes
+springboot笔记: https://github.com/jidn1/spring-boot/tree/master/spring-boot-notes
+
+## spirng-boot-dbdoc
+自动生成数据库说明文档: https://github.com/jidn1/spring-boot/tree/master/spring-boot-dbdoc
