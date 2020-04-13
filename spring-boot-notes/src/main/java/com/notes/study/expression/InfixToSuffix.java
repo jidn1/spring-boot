@@ -63,7 +63,53 @@ public class InfixToSuffix {
             }
 
         }
+        while(!s1.isEmpty()){
+            s2.push(s1.pop());
+        }
 
+        return s2;
+    }
+
+
+    //中缀表达式转换为前缀表达式，将结果存储在栈中返回，显示即前缀表达式
+    public MyCharStack doTransPre() {
+
+        for (int i = input.length() - 1; i >= 0; i--) {
+            System.out.print("s1栈元素为：");
+            s1.displayStack();
+            System.out.print("s2栈元素为：");
+            s2.displayStack();
+
+            char ch = input.charAt(i);
+
+            System.out.println("当前解析的字符:" + ch);
+
+            switch (ch) {
+                case '+':
+                case '-':
+                    gotOper(ch,1);
+                    break;
+                case '*':
+                case '/':
+                    gotOper(ch,2);
+                    break;
+                case ')':
+                    s1.push(ch);//如果当前字符是'(',则将其入栈
+                    break;
+                case '(':
+                    gotParenLeft(ch);
+                    break;
+                default:
+                    //1、如果当前解析的字符是操作数，则直接压入s2
+                    //2、
+                    s2.push(ch);
+                    break;
+            }
+
+        }
+        while(!s1.isEmpty()){
+            s2.push(s1.pop());
+        }
 
         return s2;
     }
@@ -72,7 +118,7 @@ public class InfixToSuffix {
     public void gotOper(char opThis, int prec1){
         while(!s1.isEmpty()){
             char opTop = s1.pop();
-            if(opTop == '('){//如果栈顶是'(',直接将操作符压入s1
+            if(opTop == '(' || opTop == ')'){//如果栈顶是'(',直接将操作符压入s1
                 s1.push(opTop);
                 break;
             }else{
@@ -110,6 +156,19 @@ public class InfixToSuffix {
     }
 
 
+    //当前字符是 ')' 时，如果栈顶是'(',则将这一对括号丢弃，否则依次弹出s1栈顶的字符，压入s2，直到遇到'('
+    public void gotParenLeft(char ch){
+        while(!s1.isEmpty()){
+            char chx = s1.pop();
+            if(chx == ')'){
+                break;
+            }else{
+                s2.push(chx);
+            }
+        }
+    }
+
+
     public static void main(String[] args) {
         String input;
         // A*(B+C)-D/(E+F)
@@ -117,8 +176,15 @@ public class InfixToSuffix {
         Scanner scanner = new Scanner(System.in);
         input = scanner.nextLine();
         InfixToSuffix in = new InfixToSuffix(input);
-        MyCharStack my = in.doTrans();
-        my.displayStack();
+        // A B C + * D E F + / -
+//        MyCharStack my = in.doTrans();
+//        System.out.println("中缀转后缀表达式");
+//        my.displayStack();
+
+        // - * A + B C / D + E F
+        MyCharStack myPre = in.doTransPre();
+        System.out.println("中缀转前缀表达式");
+        myPre.displayPopStack();
     }
 
 }

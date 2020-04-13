@@ -54,6 +54,14 @@ public class MyCharStack {
         System.out.println("");
     }
 
+    public void displayPopStack(){
+        for(int i = top ; i >= 0; i--){
+            System.out.print(peekN(i));
+            System.out.print(' ');
+        }
+        System.out.println("");
+    }
+
     //判断栈是否为空
     public boolean isEmpty(){
         return (top == -1);

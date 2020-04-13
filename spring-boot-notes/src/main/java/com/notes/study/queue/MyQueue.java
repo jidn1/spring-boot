@@ -78,6 +78,11 @@ public class MyQueue {
     }
 
 
+    public void display(){
+
+    }
+
+
     public static void main(String[] args) {
         MyQueue queue = new MyQueue(3);
         queue.insert(1);
@@ -91,5 +96,6 @@ public class MyQueue {
         queue.insert(4);//queArray数组数据为[2,3,4]
         System.out.println(queue.peekFront());
         queue.insert(5);//队列已满,queArray数组数据为[4,2,3]
+
     }
 }
