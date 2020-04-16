@@ -1,5 +1,4 @@
-spring:allatori
-  profiles:
+profiles:
     active: dev
 
 
