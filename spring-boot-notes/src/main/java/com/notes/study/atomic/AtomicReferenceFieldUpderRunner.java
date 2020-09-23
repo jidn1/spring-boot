@@ -17,6 +17,7 @@ public class AtomicReferenceFieldUpderRunner {
         System.out.println(fieldUpdater.get(us));
         fieldUpdater.getAndSet(us, "jack");
         System.out.println(fieldUpdater.get(us));
+
     }
 
 
