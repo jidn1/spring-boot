@@ -114,18 +114,22 @@ public class MysqlBinLogListener  extends AbstractMain implements BinaryLogClien
                     }
                 }
             }
-//            if(isUpdate(eventType)){
-//                UpdateRowsEventData data = event.getData();
-//
-//                for (Map.Entry<Serializable[], Serializable[]> row : data.getRows()) {
-//                    if (dbTableCols.containsKey(dbTable)) {
-//                        LogItem e = LogItem.itemFromUpdate(row, dbTableCols.get(dbTable));
-//                        e.setDbTable(dbTable);
-//                        e.setEventName(eventType.name());
-//                        queue.add(e);
-//                    }
-//                }
-//            }
+            if(isUpdate(eventType)){
+                UpdateRowsEventData data = event.getData();
+                List<Map.Entry<Serializable[], Serializable[]>> rows = data.getRows();
+                System.out.println(data);
+                System.out.println(data.getRows().get(0).getValue()[0]);
+                System.out.println(data.getRows().get(0).getValue()[1]);
+                System.out.println(data.getRows().get(0).getValue()[2]);
+                for (Map.Entry<Serializable[], Serializable[]>  row : data.getRows()) {
+                    if (dbTableCols.containsKey(dbTable)) {
+                       LogItem e = LogItem.itemFromUpdate(row, dbTableCols.get(dbTable));
+                        e.setDbTable(dbTable);
+                        e.setEventName(eventType.name());
+                        queue.add(e);
+                    }
+                }
+            }
         }
     }
 

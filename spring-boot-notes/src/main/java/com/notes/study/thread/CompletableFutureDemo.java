@@ -30,10 +30,7 @@ public class CompletableFutureDemo {
                             }
                         }
                         return count;
-                    }, executor).handle((count, throwable) -> {
-
-                        return 0;
-                    })
+                    }, executor)
             );
             i++;
         }
@@ -41,7 +38,8 @@ public class CompletableFutureDemo {
 
         try{
             List<Integer> collect = listCompletableFuture.stream().map(CompletableFuture::join).collect(Collectors.toList());
-            System.out.println(JSONObject.toJSONString(collect));
+            int sum = collect.stream().mapToInt(Integer::intValue).sum();
+            System.out.println(JSONObject.toJSONString(sum));
            // System.out.println(JSONObject.toJSONString(listCompletableFuture.get(0).get()));
         } catch (Exception e){}
     }

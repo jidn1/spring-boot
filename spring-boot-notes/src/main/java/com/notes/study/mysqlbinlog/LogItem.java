@@ -48,6 +48,29 @@ public class LogItem {
     }
 
 
+    public static LogItem itemFromUpdate(Map.Entry<Serializable[], Serializable[]> row, Map<String, MysqlBinLogListener.Colum> columMap) {
+        if (null == row || null == columMap) {
+            return null;
+        }
+
+        LogItem i = new LogItem();
+        i.colums = columMap;
+        i.before = null;
+
+        Map<String, Serializable> af = new HashMap<>();
+        columMap.entrySet().forEach(entry -> {
+            String key = entry.getKey();
+            MysqlBinLogListener.Colum colum = entry.getValue();
+            String v = (String) row.getValue()[colum.inx];
+            af.put(key, v);
+        });
+
+        i.after = af;
+        return i;
+
+    }
+
+
 
 
     public String getEventName() {
