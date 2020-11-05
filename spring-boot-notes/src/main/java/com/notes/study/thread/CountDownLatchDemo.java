@@ -8,11 +8,11 @@ public class CountDownLatchDemo {
     //用于聚合所有的统计指标
     private static Map map = new HashMap();
     //创建计数器，这里需要统计4个指标
-    private static CountDownLatch countDownLatch = new CountDownLatch(4);​
+    private static CountDownLatch countDownLatch = new CountDownLatch(4);
 
-    public static void main(String[] args) {​
+    public static void main(String[] args) {
         //记录开始时间
-        long startTime = System.currentTimeMillis();​
+        long startTime = System.currentTimeMillis();
         Thread countUserThread = new Thread(new Runnable() {
             public void run() {
                 try {
@@ -36,7 +36,7 @@ public class CountDownLatchDemo {
                     System.out.println("统计订单数量完毕");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }​
+                }
             }
         });
         Thread countGoodsThread = new Thread(new Runnable() {
@@ -50,10 +50,8 @@ public class CountDownLatchDemo {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-​
             }
         });
-​
         Thread countmoneyThread = new Thread(new Runnable() {
             public void run() {
                 try {
@@ -65,7 +63,6 @@ public class CountDownLatchDemo {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-​
             }
         });
         //启动子线程执行任务
@@ -73,7 +70,7 @@ public class CountDownLatchDemo {
         countGoodsThread.start();
         countOrderThread.start();
         countmoneyThread.start();
-​
+
         try {
             //主线程等待所有统计指标执行完毕
             countDownLatch.await();
@@ -81,7 +78,6 @@ public class CountDownLatchDemo {
             System.out.println("------统计指标全部完成--------");
             System.out.println("统计结果为：" + map.toString());
             System.out.println("任务总执行时间为" + (endTime - startTime) / 1000 + "秒");
-​
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
