@@ -17,8 +17,8 @@ public class MainStart {
     // 如果配置类是Full配置类，会发现只打印了一次“你好”，也就是说A类只被new了一次，因为这个类被cgilb代理了，方法 已经被改写
     public static void main(String[] args) {
 
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(LiftConfig.class);
+       // AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(FullConfig.class);
 
-        User u = context.getBean( User.class);
+        //User u = context.getBean( User.class);
     }
 }
