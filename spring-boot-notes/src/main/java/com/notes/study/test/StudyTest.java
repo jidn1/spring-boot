@@ -1,8 +1,10 @@
 package com.notes.study.test;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.notes.common.enums.HoldModeEnum;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,29 +16,51 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StudyTest {
 
-
+    private static final Pattern VERSION_PREFIX_PATTERN = Pattern.compile("/v(\\d+)/");
     public static void main(String[] args) {
 
-//        BigDecimal a = new BigDecimal(12.3);
+//        HoldModeEnum holdModeEnum = HoldModeEnum.toEnum(1);
 //
-//        System.out.println(a.movePointRight(1).setScale(6,BigDecimal.ROUND_DOWN));
-//
-//        System.out.println(a.setScale(6,BigDecimal.ROUND_DOWN).abs());
-//
-//        BigDecimal four = new BigDecimal("4");
-//        System.out.println(four.divideAndRemainder(new BigDecimal("2"))[0]);
+//        System.out.println(holdModeEnum.toString());
 
-//        List<Integer> historyList = Arrays.asList(1,0);
-//        System.out.println(checkIsLoanOrReview(historyList));
-      calc();
-//        int n = 1;
-//        Student student = new Student();
-//        student.setName("hankesi");
-//        test(student);
-//        System.out.println(student.getName());
+        System.out.println(new BigDecimal("-10"));
+        HoldModeEnum single_side_hold = HoldModeEnum.valueOf("single_side_hold".toUpperCase());
+        System.out.println(single_side_hold.getCode()+""+single_side_hold.getValue());
+    }
+
+    public static String symbolSuffixPREP(String symbol){
+        symbol = substringPrefix(symbol);
+        return String.format("%sPREP",symbol);
+    }
+
+    public static String substringPrefix(String symbol){
+        int end;
+        // 正规表达式
+        Pattern pattern = Pattern.compile("CMT_", Pattern.CASE_INSENSITIVE);
+        // 去掉原始字符串开头位置的指定字符
+        Matcher matcher = pattern.matcher(symbol);
+        if (matcher.lookingAt()) {
+            end = matcher.end();
+            symbol = symbol.substring(end);
+            return String.format("%sPREP",symbol);
+        }
+        return symbol;
+    }
+
+    public static String symbolSuffixCMT(String symbol){
+        if (symbol.endsWith("PERP")) {
+            symbol = symbol.substring(0,symbol.length() - 4);
+            if(symbol.endsWith("USD")){
+                return symbol;
+            }
+            return String.format("CMT_" + "%s",symbol);
+        }
+        return symbol;
     }
 
     Thread one = null;
@@ -134,12 +158,12 @@ public class StudyTest {
 
 
     public static  void test(Student student){
-        if(true){
-            student.setName("tom");
-            return;
-        }
-        student.setName("jack");
-        System.out.println("123123");
+//        if(true){
+//            student.setName("tom");
+//            return;
+//        }
+//        student.setName("jack");
+//        System.out.println("123123");
     }
 
 
