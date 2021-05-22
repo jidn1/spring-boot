@@ -34,50 +34,22 @@ public class StudyTest {
 
     @SneakyThrows
     public static void main(String[] args) {
-        List<BigDecimal> list = Arrays.asList(
-                new BigDecimal("41023.12"),
-                new BigDecimal("41024.17"),
-                new BigDecimal("41031.20"),
-                new BigDecimal("41042.31"));
 
 
+    }
+
+
+
+
+
+
+
+    @Test
+    public void depthMerge(){
         for(SpotDepthTypeEnum spotDepthTypeEnum : SpotDepthTypeEnum.values()){
             DealWith dealWith = DealWith.DepthEnum(spotDepthTypeEnum,new BigDecimal("39223.42"), 2);
             dealWith.step();
         }
-
-
-    }
-
-
-
-    public static void calc(Integer intScale, BigDecimal bigDecimal, boolean flag) {
-
-        BigDecimal bigDecimal1 = bigDecimal.movePointLeft(intScale).setScale(0, RoundingMode.UP);
-
-        bigDecimal1 = roundUp(bigDecimal1.intValue(),flag);
-
-        BigDecimal bigDecimal2 = bigDecimal1.movePointRight(intScale).setScale(1, RoundingMode.DOWN);
-
-        System.out.println(bigDecimal);
-        System.out.println(bigDecimal2);
-    }
-
-    public static BigDecimal roundUp(int n,boolean flag) {
-        if(!flag){
-            return new BigDecimal(n);
-        }
-        return new BigDecimal((n + 4) / 5 * 5);
-    }
-
-
-
-    public static BigDecimal roun(int a) {
-        BigDecimal sss = new BigDecimal("").setScale(1, RoundingMode.UP);
-        if (a > 0) {
-            roun(a - 1);
-        }
-        return sss;
     }
 
 
