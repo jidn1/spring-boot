@@ -108,7 +108,7 @@
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
             <!-- 这里使用最新的2.8.4版本，中央仓库不存在，请自行打入本地仓库 也可以替换成 2.5.3版本 -->
-            <version>2.5.3</version>
+            <version>2.6.12</version>
             <exclusions>
                 <exclusion>
                     <artifactId>spring</artifactId>
